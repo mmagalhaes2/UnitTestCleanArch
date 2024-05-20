@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MonitorParameters {
     private String contractAddress;
+    private String walletAddress;
     private EventSpecification eventSpecification;
     private CorrelationStrategy correlationStrategy;
     private String callbackUrl;
@@ -26,6 +27,7 @@ public class MonitorParameters {
     public EventMonitor getEventMonitor() {
         return EventMonitor.builder()
                 .contractAddress(contractAddress)
+                .walletAddress(walletAddress)
                 .eventSpecification(eventSpecification)
                 .correlationStrategy(correlationStrategy)
                 .callbackUrl(callbackUrl)
@@ -35,6 +37,7 @@ public class MonitorParameters {
     public TransactionMonitor getTransactionMonitor() {
         return TransactionMonitor.builder()
                 .type(transactionType)
+                .walletAddress(walletAddress)
                 .transactionHash(transactionHash)
                 .nodeName(nodeName)
                 .notificationsStatus(notificationsStatus)

@@ -18,4 +18,14 @@ public class TransactionMonitorProviderImpl implements TransactionMonitorProvide
     public TransactionMonitor registerMonitor(TransactionMonitor transactionMonitor) throws Exception {
         return transactionMonitorRepository.save(transactionMonitor);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteMonitor(String id) throws Exception {
+        try {
+            transactionMonitorRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new Exception("Error deleting monitor");
+        }
+    }
 }
